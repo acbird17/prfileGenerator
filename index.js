@@ -5,6 +5,7 @@ const Intern = require("./lib/intern");
 const fs = require("fs");
 const path = require("path");
 
+const render = require("./lib/generateHtml");
 const team = [];
 
 class generateTeam {
@@ -60,9 +61,10 @@ class generateTeam {
         } else if (answers.title === "Intern") {
           this.intern();
         } else {
-          fs.writeFile(fileName, data, (err) => {
+          var html = render(team);
+          fs.writeFile("teamProfile.html", render(team), (err) => {
             if (err) {
-              return console.log(err);
+              return console.log("test");
             }
             console.log("teamProfile.html file has been created!");
           });
