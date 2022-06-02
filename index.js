@@ -4,6 +4,7 @@ const Manager = require("./lib/manager");
 const Intern = require("./lib/intern");
 const fs = require("fs");
 const path = require("path");
+const output = path.resolve(__dirname, "dist", "teamProfile.html");
 
 const render = require("./lib/generateHtml");
 const team = [];
@@ -62,9 +63,9 @@ class generateTeam {
           this.intern();
         } else {
           var html = render(team);
-          fs.writeFile("teamProfile.html", render(team), (err) => {
+          fs.writeFile(output, render(team), (err) => {
             if (err) {
-              return console.log("test");
+              return console.log(err);
             }
             console.log("teamProfile.html file has been created!");
           });
